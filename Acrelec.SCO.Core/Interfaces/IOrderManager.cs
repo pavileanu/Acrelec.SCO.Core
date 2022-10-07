@@ -14,6 +14,7 @@ namespace Acrelec.SCO.Core.Interfaces
         /// </summary>
         /// <param name="orderToInject"></param>
         /// <returns></returns>
-        Task<string> InjectOrderAsync(Order orderToInject);
+        Task<string> InjectOrderAsync(Order orderToInject, Customer customer);
+        Task<bool> IsOrderServiceOnlineAsync();
     }
 }

@@ -24,22 +24,27 @@ Response (failure)
 //Core -> Server
 POST /api-sco/v1/injectorder
 Request
+
 {
-	"Order": {
-		"OrderItems":[{
-			"ItemCode": "100",
-			"Qty": 1
-		},
-		{
-			"ItemCode": "200",
-			"Qty": 2
-		}]
-	},
-	"Customer": {
-		"Firstname": "John",
-		"Address": "Bucharest"
-	}
+  "Order":
+   {
+      "OrderItems":[
+         {
+            "ItemCode":"100",
+            "Qty":1
+         },
+         {
+            "ItemCode":"200",
+            "Qty":2
+         }
+      ],
+      "Customer":{
+         "Firstname":"John",
+         "Address":"Bucharest"
+      }
+   }
 }
+
 Response (success)
 {
 	"OrderNumber": "10"

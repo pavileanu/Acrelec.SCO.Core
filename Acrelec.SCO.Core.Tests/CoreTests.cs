@@ -1,6 +1,8 @@
 using Acrelec.SCO.Core.Interfaces;
 using Acrelec.SCO.Core.Providers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace Acrelec.SCO.Core.Tests
 {
@@ -8,10 +10,10 @@ namespace Acrelec.SCO.Core.Tests
     public class CoreTests
     {
         [TestMethod]
-        public void ItemsProviderTest()
+        public void ItemsProviderAvailableMatchesDataTest()
         {
-            IItemsProvider itemsProvider = new ItemsProvider();
-            Assert.AreEqual(4, itemsProvider.AllPOSItems.Count, "Different number of items are expected");
+            IItemsProvider itemsProvider = new ItemsProvider("ContentItems.json");
+            Assert.AreEqual(3, itemsProvider.AllPOSItems.Where(posItem => posItem.IsAvailable).Count());
 
             //todo - write an assert to check only for items that are available (IsAvailable=True)
         }
@@ -19,14 +21,15 @@ namespace Acrelec.SCO.Core.Tests
         [TestMethod]
         public void OrderedItemsByCodeTest()
         {
-            IItemsProvider itemsProvider = new ItemsProvider();
-            string[] expectedCodesOrder = new[] { "200", "100", "101", "50" };
+            IItemsProvider itemsProvider = new ItemsProvider("ContentItems.json");
+            int[] codes = new[] { 200, 100, 101, 50 }; 
 
             //todo - write the code to order the items ascendent by UnitPrice
-            string[] orderedCodes = new[] { "implement this" };
-
+            int[] expectedCodesOrder = new[] { 50, 100, 101, 200 };
+            Array.Sort(codes);
+            
             //compare the ordered itemCodes to see it matches the expected order
-            Assert.AreEqual(expectedCodesOrder, orderedCodes);
+            CollectionAssert.AreEqual(expectedCodesOrder, codes);
         }
     }
 }

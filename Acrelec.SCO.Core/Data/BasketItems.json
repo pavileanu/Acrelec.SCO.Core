@@ -1,0 +1,14 @@
+﻿[
+  {
+    "ItemCode": "100",
+    "Name": "Coke",
+    "IsAvailable": true,
+    "UnitPrice": 200
+  },
+  {
+    "ItemCode": "200",
+    "Name": "Water",
+    "IsAvailable": true,
+    "UnitPrice": 100
+  }
+]

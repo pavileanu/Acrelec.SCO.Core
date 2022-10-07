@@ -24,20 +24,20 @@ namespace Acrelec.SCO.Core.Providers
         /// <summary>
         /// constructor
         /// </summary>
-        public ItemsProvider()
+        public ItemsProvider(string source)
         {
             _posItems = new List<POSItem>();
-            LoadItemsFromPOS();
+            LoadItemsFromPOS(source);
         }
 
         /// <summary>
         /// retrieving items from POS is a simple parse of a json
         /// </summary>
-        public void LoadItemsFromPOS()
+        public void LoadItemsFromPOS(string source)
         {
             //todo - implement the code to load items from Data\ContentItems.json file
             string applicationPath = AppDomain.CurrentDomain.BaseDirectory;
-            string invetoryJsonPath = @$"{applicationPath}\Data\ContentItems.json";
+            string invetoryJsonPath = @$"{applicationPath}\Data\{source}";
        
             string jsonResult = File.ReadAllText(invetoryJsonPath);
             _posItems = JsonConvert.DeserializeObject<List<POSItem>>(jsonResult);
